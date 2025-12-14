@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-// import styles from './../css/Header.module.css'
+import styles from '../css/Header.module.css'
 
 const Header = ({login,logOut}) => {
 
@@ -11,10 +11,10 @@ const Header = ({login,logOut}) => {
                 {login ? (
                     <>
                         <div>
-                            <Link to={"/albums"}>Listado Completo</Link>{" "}
+                            <Link to={"/albumes"}>Listado Completo</Link>{" "}
                         </div>
                         <div>
-                            <Link to={"/albums/new"}>Agregar albums </Link>
+                            <Link to={"/albumes/new"}>Agregar albums </Link>
                         </div>                    
                         <button onClick={logOut}>Log out</button>
                     </>
@@ -24,7 +24,7 @@ const Header = ({login,logOut}) => {
                             <Link to={"/login"}>Login</Link>
                         </div>
                         <div>
-                            <Link to={"/register"}>Registro </Link>
+                            <Link to={"/register"}>Registrarte </Link>
                         </div>
                         
                     </>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const AlbumsApi =  ({setlistaAlbums, setLogin, setMe,listaAlbums,logOut, login})=> {
     const getData = ()=>{
-        const URL = 'http://localhost:8090/api/albums'
+        const URL = 'http://localhost:8090/api/albumes'
         axios(URL, {headers : {token_user : localStorage.getItem("token")}}).then(
             response => {
                 setlistaAlbums(response.data)
@@ -37,14 +37,23 @@ const AlbumsApi =  ({setlistaAlbums, setLogin, setMe,listaAlbums,logOut, login})
                         <th className={styles.extra}>
                             Modificar
                         </th>
+                        <th className={styles.extra}>
+                            Modificar
+                        </th>
+                        <th className={styles.extra}>
+                            Modificar
+                        </th>
+                        <th className={styles.extra}>
+                            Modificar
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {listaAlbums.map((foro,index)=> (
+                    {listaAlbums.map((album,index)=> (
                         <tr key={index} >
                             <td className={styles.title}>{album.title}</td>
-                            <td className={styles.extra}> <Link to={`/albums/${foro._id}`}>Ver</Link></td>
-                            <td className={styles.extra}> <Link to={`/albums/editar/${foro._id}`}>Editar</Link></td>
+                            <td className={styles.extra}> <Link to={`/albumes/${album._id}`}>Ver</Link></td>
+                            <td className={styles.extra}> <Link to={`/albumes/update/${album._id}`}>Editar</Link></td>
                         </tr>
                     ) )}
                 </tbody>

@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import NotFound from "./components/NotFound"
-import Header from "./components/Header"
+import Header from "./components/Header.jsx"
 import Login from "./views/Login"
 import Register from './views/Register'
 import AlbumsApi from './views/AlbumsApi'
-import NewAlbum from "./views/NewALbum"
+import NewAlbum from "./views/NewAlbum"
 import UpdateAlbum from "./views/UpdateAlbums"
+import OneAlbums from './views/OneAlbums'
+import {  Routes, Route, useNavigate  } from 'react-router-dom';
 
 
 function App() {
@@ -26,10 +28,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setLogin={setLogin} />} />
         <Route path="/register" element={<Register setLogin={setLogin} />} />
-        <Route path="/albums" element={ < ForosApi setListaAlbums={setListaAlbums} setLogin={setLogin} setMe={setMe} listaAlbums={listaAlbums} logOut={logOut}/> }/>
-        <Route path="/albums/new" element={ < NewForo me={me} setListaAlbums={setListaAlbums}  listaAlbums={listaAlbums} logOut={logOut} login={login}/> }/>
-        <Route path="/albums/editar/:id" element={ <UpdateForo setListaAlbums={setListaAlbums}  listaAlbums={listaAlbums} logOut={logOut} setLogin={setLogin}/>} />
-        <Route path="/albums/:id" element={ <OneForo setListaAlbums={setListaAlbums} setLogin={setLogin} logOut={logOut} listaAlbums={listaAlbums} />}/>
+        <Route path="/albumes" element={ < AlbumsApi setListaAlbums={setListaAlbums} setLogin={setLogin} setMe={setMe} listaAlbums={listaAlbums} logOut={logOut}/> }/>
+        <Route path="/albumes/new" element={ < NewAlbum me={me} setListaAlbums={setListaAlbums}  listaAlbums={listaAlbums} logOut={logOut} login={login}/> }/>
+        <Route path="/albumes/update/:id" element={ <UpdateAlbum setListaAlbums={setListaAlbums}  listaAlbums={listaAlbums} logOut={logOut} setLogin={setLogin}/>} />
+        <Route path="/albumes/:id" element={ <OneAlbums setListaAlbums={setListaAlbums} setLogin={setLogin} logOut={logOut} listaAlbums={listaAlbums} />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

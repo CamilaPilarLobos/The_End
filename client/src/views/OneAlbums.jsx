@@ -17,7 +17,7 @@ const OneAlbums = ({setlistAlbums, setLogin, logOut,listaAlbums, me}) => {
 
 
     const getData = ()=> {
-        const URL = `http://localhost:8090/api/albums/${id}`
+        const URL = `http://localhost:8090/api/albumes/${id}`
         axios(URL, {headers: {token_user : localStorage.getItem("token")}}).then(
             response => {
                 setAlbumsData(response.data)
@@ -38,12 +38,12 @@ const OneAlbums = ({setlistAlbums, setLogin, logOut,listaAlbums, me}) => {
     },[])
 
     const deleteAlbum = () => {
-        const URL = `http://localhost:8090/api/albums/destroy/${id}`
+        const URL = `http://localhost:8090/api/albumes/destroy/${id}`
         axios.delete(URL, {headers: {token_user : localStorage.getItem("token")}}).then(
             response => {
                 setlistAlbums(listaAlbums.filter( album => album._id != id))
                 setLogin(true)
-                navigate('/albums')
+                navigate('/albumes')
             }
         ).catch(
             e => {
@@ -59,16 +59,22 @@ const OneAlbums = ({setlistAlbums, setLogin, logOut,listaAlbums, me}) => {
             <h2>{albumsData.title}</h2>
             <br />
             <div className={styles.card}>
-                <p className={styles.titles}>Foro creado por:</p>
-                <p>{albumsData.author.firstName} {albumsData.author.lastName}</p>
-                <p className={styles.titles}>Email:</p>
-                <p>{albumsData.author.email}</p>
-                <p className={styles.titles}>Categoria / tema</p>
-                <p>{albumsData.category}</p>
-                <p className={styles.titles}>Descripcion</p>
-                <p>{albumsData.description}</p>
+                <p className={styles.titles}>Album creado por:</p>
+                <p>{albumsData.title}</p>
+
+                <p className={styles.titles}>Artista:</p>
+                <p>{albumsData.artist}</p>
+
+                <p className={styles.titles}>Año de lanzamiento:</p>
+                <p>{albumsData.yearOfRelease}</p>
+
+                <p className={styles.titles}>genero</p>
+                <p>{albumsData.genero}</p>
+
+                <p className={styles.titles}>cantidad de canciones:</p>
+                <p>{albumsData.amount}</p>
             </div>
-            <button className={styles.delete} onClick={deleteForo}>Eliminar</button>
+            <button className={styles.delete} onClick={deleteAlbum}>Eliminar</button>
         </>
     )
 }

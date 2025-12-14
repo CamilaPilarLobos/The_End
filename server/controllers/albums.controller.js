@@ -1,10 +1,10 @@
-import {Albums} from "../models/albums.model.js";
+import {Albums} from "../models/albums.models.js";
 
 const albumsController = {
     getAll : async  (req, res)=> {
         try{
-            const album = await Albums.find().populate("author");
-            return res.status(201).json(album)
+            const albums = await Albums.find();
+            return res.status(201).json(albums)
         }catch(e){
             return res.status(400).json({message: "Error al encontrar los ablums"})
         }

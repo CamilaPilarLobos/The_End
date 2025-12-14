@@ -24,7 +24,7 @@ const Login = ({setLogin}) =>{
                 localStorage.setItem("token", response.data.token)
                 setLogin(true)
                 setErrors({})
-                navigate('/foros')
+                navigate('/albumes')
             }
         ).catch(e=> setErrors(e.response.data.errors))
     }
