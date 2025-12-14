@@ -3,15 +3,15 @@ import {Albums} from "../models/albums.model.js";
 const albumsController = {
     getAll : async  (req, res)=> {
         try{
-            const Albums = await Albums.find();
-            return res.status(201).json(albums)
+            const album = await Albums.find().populate("author");
+            return res.status(201).json(album)
         }catch(e){
-            return res.status(400).json(e)
+            return res.status(400).json({message: "Error al encontrar los ablums"})
         }
     },
     createOne : async (req, res)=> {
-        const {title, description, category, author, amount} = req.body;
-        const newArray = {title, description, category, author, amount} 
+        const {title, artist, yearOfRelease, genero, amount}  = req.body;
+        const newArray = {title, artist, yearOfRelease, genero, amount} 
         try{
             const newAlbum = await Albums.create(newArray)
             res.status(201).json(newAlbum)
@@ -59,21 +59,21 @@ const albumsController = {
 
     updateOne: async (req, res)=> {
         const id = req.params.id;
-        const {title, description, category, author,amount } = req.body;
+        const {title, artist, yearOfRelease, genero, amount}  = req.body;
         const dataTobeUpdated = {};
         if(title){
             dataTobeUpdated.title = title
         }
-        if(description){
-            dataTobeUpdated.description = description
+        if(artist){
+            dataTobeUpdated.artist = artist
         }
-        if(category){
-            dataTobeUpdated.category = category
+        if(yearOfRelease){
+            dataTobeUpdated.yearOfRelease = yearOfRelease
         }
-        if(author){
-            dataTobeUpdated.author = author
+        if(genero){
+            dataTobeUpdated.genero = genero
         }
-        if(author){
+        if(amount){
             dataTobeUpdated.amount = amount
         }
         try{

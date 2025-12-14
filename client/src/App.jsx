@@ -5,7 +5,7 @@ import Header from "./components/Header"
 import Login from "./views/Login"
 import Register from './views/Register'
 import AlbumsApi from './views/AlbumsApi'
-// import NewAlbum from "./views/NewALbum"
+import NewAlbum from "./views/NewALbum"
 import UpdateAlbum from "./views/UpdateAlbums"
 
 

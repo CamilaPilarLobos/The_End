@@ -12,12 +12,12 @@ const albumsSchema = mongoose.Schema(
             type: String,
             required: [true, "add artist"],
             minlength: [2, "minimum 2"]
-        },
-        yearOfRealease: {
+        }, 
+        yearOfRelease: {
             type: Date,
-            required: [true, "the year is obligatory"],
-            min: [1900, "Thats old, very old"],
-            max: [2026, "that's impossible sir"]
+            required: [true, "The year is obligatory"],
+            min: [new Date('1950-01-01'), "That's old, very old"],
+            max: [new Date('2026-01-01'), "That's impossible, sir"]
         },
         genero: {
             type: String,
