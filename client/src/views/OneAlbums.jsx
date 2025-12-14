@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 // import styles from './../css/OneForo.module.css'
 
 
-const OneAlbums = ({setlistaAlbums, setLogin, logOut,listaAlbums, me}) => {
+const OneAlbums = ({setlistAlbums, setLogin, logOut,listaAlbums, me}) => {
     const navigate = useNavigate()
     const {id} = useParams();
     const [albumsData, setAlbumsData] = useState({
@@ -17,7 +17,7 @@ const OneAlbums = ({setlistaAlbums, setLogin, logOut,listaAlbums, me}) => {
 
 
     const getData = ()=> {
-        const URL = `http://localhost:8090/api/foros/${id}`
+        const URL = `http://localhost:8090/api/albums/${id}`
         axios(URL, {headers: {token_user : localStorage.getItem("token")}}).then(
             response => {
                 setAlbumsData(response.data)
@@ -38,12 +38,12 @@ const OneAlbums = ({setlistaAlbums, setLogin, logOut,listaAlbums, me}) => {
     },[])
 
     const deleteAlbum = () => {
-        const URL = `http://localhost:8090/api/foros/destroy/${id}`
+        const URL = `http://localhost:8090/api/albums/destroy/${id}`
         axios.delete(URL, {headers: {token_user : localStorage.getItem("token")}}).then(
             response => {
-                setAlbumsData(listaAlbums.filter( foro => foro._id != id))
+                setlistAlbums(listaAlbums.filter( album => album._id != id))
                 setLogin(true)
-                navigate('/foros')
+                navigate('/albums')
             }
         ).catch(
             e => {
@@ -68,7 +68,7 @@ const OneAlbums = ({setlistaAlbums, setLogin, logOut,listaAlbums, me}) => {
                 <p className={styles.titles}>Descripcion</p>
                 <p>{albumsData.description}</p>
             </div>
-            {albumsData.author?.email == me.email? <button className={styles.delete} onClick={deleteAlbum}>Eliminar</button> : "" }
+            <button className={styles.delete} onClick={deleteForo}>Eliminar</button>
         </>
     )
 }

@@ -1,20 +1,20 @@
 import { Link } from "react-router-dom";
-import styles from './../css/Header.module.css'
+// import styles from './../css/Header.module.css'
 
 const Header = ({login,logOut}) => {
 
     return(
         <>
             <header className={styles.header} >
-                <h1>Foros</h1>
+                <h1>albums</h1>
                 <div className={styles.options}>
                 {login ? (
                     <>
                         <div>
-                            <Link to={"/foros"}>Listado Completo</Link>{" "}
+                            <Link to={"/albums"}>Listado Completo</Link>{" "}
                         </div>
                         <div>
-                            <Link to={"/foros/new"}>Agregar Foro </Link>
+                            <Link to={"/albums/new"}>Agregar albums </Link>
                         </div>                    
                         <button onClick={logOut}>Log out</button>
                     </>

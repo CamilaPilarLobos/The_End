@@ -45,7 +45,7 @@ const userController = {
             });
 
         } catch (e) {
-            console.error("ERROR REAL 👉", e);
+            console.error("ERROR <3", e);
 
             const messages = {};
 
@@ -93,7 +93,7 @@ const userController = {
             id: currentUser._id
         };
 
-        jwt.sign(saveToken, SECRET, { expiresIn: "1m" }, (err, token) => {
+        jwt.sign(saveToken, SECRET, { expiresIn: "10m" }, (err, token) => {
             return res.status(200).json({ token });
         });
     }

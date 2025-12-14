@@ -37,6 +37,7 @@ userSchema.virtual('passwordConfirmation').get(
 ).set(function(value){
     this._passwordConfirmation = value;
 });
+
 userSchema.pre("validate", function () {
     if (this.password !== this.passwordConfirmation) {
         this.invalidate(
@@ -46,13 +47,10 @@ userSchema.pre("validate", function () {
     }
 });
 
-
 userSchema.pre("save", async function () {
     if (!this.isModified("password")) return;
-    this.password = await bcrypt.hash(this.password, 10);
+    this.password =  bcrypt.hash(this.password, 8);
 });
-
-
 
 const User = mongoose.model('users', userSchema)
 
