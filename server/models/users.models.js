@@ -1,4 +1,4 @@
-import {mongoose} from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from 'bcrypt'
 
 
@@ -37,24 +37,24 @@ userSchema.virtual('passwordConfirmation').get(
 ).set(function(value){
     this._passwordConfirmation = value;
 });
-
-userSchema.pre('validate', function(next){
-    if(this.password !== this.passwordConfirmation){
-        this.invalidate('passwordConfirmation', 'THe password and the paswrod confimatio do not match')
+userSchema.pre("validate", function () {
+    if (this.password !== this.passwordConfirmation) {
+        this.invalidate(
+            "passwordConfirmation",
+            "The password and the password confirmation do not match"
+        );
     }
-    next();
-})
+});
 
 
-userSchema.pre('save',function(next){
-    bcrypt.hash(this.password,10).then((ecnryptedPass)=> {
-        this.password = ecnryptedPass;
-        next();
-    }
-)})
+userSchema.pre("save", async function () {
+    if (!this.isModified("password")) return;
+    this.password = await bcrypt.hash(this.password, 10);
+});
 
 
 
 const User = mongoose.model('users', userSchema)
 
 export {User, userSchema}
+
